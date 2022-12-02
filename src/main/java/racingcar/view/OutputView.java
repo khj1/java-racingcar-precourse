@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.Car;
+import racingcar.model.Car;
 import racingcar.model.CarName;
 import racingcar.model.Cars;
 

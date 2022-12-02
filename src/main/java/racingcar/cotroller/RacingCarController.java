@@ -2,7 +2,6 @@ package racingcar.cotroller;
 
 import racingcar.RandomRacingNumberGenerator;
 import racingcar.model.AttemptCount;
-import racingcar.model.CarName;
 import racingcar.model.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -31,20 +30,20 @@ public class RacingCarController {
         AttemptCount attemptCount = checkError(inputView::readAttemptCount);
         outputView.printRaceIntro();
 
-        while (!attemptCount.isOver()) {
+        while (attemptCount.isPlayable()) {
             attempt();
             attemptCount.decrease();
         }
     }
 
     private void printWinners() {
-        List<CarName> winners = cars.findWinners();
-        outputView.printWinners(winners);
+        outputView.printWinners(cars.findWinners());
     }
 
     private void attempt() {
         RandomRacingNumberGenerator numberGenerator = new RandomRacingNumberGenerator();
         cars.race(numberGenerator);
+        
         outputView.printResult(cars);
     }
 

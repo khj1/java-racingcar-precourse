@@ -1,7 +1,4 @@
-package racingcar;
-
-import racingcar.model.CarName;
-import racingcar.model.Position;
+package racingcar.model;
 
 public class Car {
     private static final int MOVABLE_LOWER_BOUND = 4;

@@ -1,6 +1,5 @@
 package racingcar.model;
 
-import racingcar.Car;
 import racingcar.RacingNumberGenerator;
 
 import java.util.Collections;

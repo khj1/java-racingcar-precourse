@@ -14,8 +14,8 @@ public class AttemptCount {
         return new AttemptCount(count);
     }
 
-    public boolean isOver() {
-        return count == IS_OVER;
+    public boolean isPlayable() {
+        return count > IS_OVER;
     }
 
     public void decrease() {
