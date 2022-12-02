@@ -14,6 +14,7 @@ public class OutputView {
     private static final String SCORE_BOARD = "%s : %s";
     private static final String WINNER_SEPARATOR = ", ";
     private static final String WINNERS_ARE = "최종 우승자 : ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printResult(Cars cars) {
         System.out.println(getScore(cars));
@@ -40,5 +41,10 @@ public class OutputView {
     private void printWinners(List<String> winners) {
         System.out.print(WINNERS_ARE);
         System.out.println(String.join(WINNER_SEPARATOR, winners));
+    }
+
+    public void printError(IllegalArgumentException error) {
+        System.out.print(ERROR_PREFIX);
+        System.out.println(error.getMessage());
     }
 }
