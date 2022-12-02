@@ -4,7 +4,7 @@ public class Car {
     private static final int MOVABLE_LOWER_BOUND = 4;
 
     private final CarName name;
-    private Position position = Position.init();
+    private final Position position = Position.init();
 
     private Car(String name) {
         this.name = CarName.from(name);
