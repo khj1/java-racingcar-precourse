@@ -28,6 +28,10 @@ public class CarName {
         return new CarName(name);
     }
 
+    public String get() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,5 +43,10 @@ public class CarName {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

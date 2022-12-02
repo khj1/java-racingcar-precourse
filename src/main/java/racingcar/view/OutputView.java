@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import racingcar.Car;
+import racingcar.model.CarName;
 import racingcar.model.Cars;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class OutputView {
     private static final String WINNER_SEPARATOR = ", ";
     private static final String WINNERS_ARE = "최종 우승자 : ";
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String RESULT_INTRO = "실행 결과";
 
     public void printResult(Cars cars) {
         System.out.println(getScore(cars));
@@ -38,13 +40,23 @@ public class OutputView {
         return score.toString();
     }
 
-    private void printWinners(List<String> winners) {
+    public void printWinners(List<CarName> winners) {
         System.out.print(WINNERS_ARE);
-        System.out.println(String.join(WINNER_SEPARATOR, winners));
+        System.out.println(getWinnerNames(winners));
+    }
+
+    private String getWinnerNames(List<CarName> winners) {
+        return winners.stream()
+                .map(CarName::get)
+                .collect(Collectors.joining(WINNER_SEPARATOR));
     }
 
     public void printError(IllegalArgumentException error) {
         System.out.print(ERROR_PREFIX);
         System.out.println(error.getMessage());
+    }
+
+    public void printRaceIntro() {
+        System.out.println(RESULT_INTRO);
     }
 }

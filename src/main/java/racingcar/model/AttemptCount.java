@@ -2,7 +2,9 @@ package racingcar.model;
 
 public class AttemptCount {
 
-    private final int count;
+    private static final int IS_OVER = 0;
+
+    private int count;
 
     public AttemptCount(int count) {
         this.count = count;
@@ -10,5 +12,13 @@ public class AttemptCount {
 
     public static AttemptCount from(int count) {
         return new AttemptCount(count);
+    }
+
+    public boolean isOver() {
+        return count == IS_OVER;
+    }
+
+    public void decrease() {
+        count--;
     }
 }
