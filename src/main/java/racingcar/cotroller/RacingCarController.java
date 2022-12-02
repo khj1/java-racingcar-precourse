@@ -28,8 +28,8 @@ public class RacingCarController {
 
     private void progressGame() {
         AttemptCount attemptCount = checkError(inputView::readAttemptCount);
-        outputView.printRaceIntro();
 
+        outputView.printRaceIntro();
         while (attemptCount.isPlayable()) {
             attempt();
             attemptCount.decrease();
@@ -43,7 +43,7 @@ public class RacingCarController {
     private void attempt() {
         RandomRacingNumberGenerator numberGenerator = new RandomRacingNumberGenerator();
         cars.race(numberGenerator);
-        
+
         outputView.printResult(cars);
     }
 
