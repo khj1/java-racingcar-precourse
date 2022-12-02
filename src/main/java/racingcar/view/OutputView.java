@@ -3,6 +3,7 @@ package racingcar.view;
 import racingcar.Car;
 import racingcar.model.Cars;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,6 +12,8 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
     private static final String SCORE_UNIT = "-";
     private static final String SCORE_BOARD = "%s : %s";
+    private static final String WINNER_SEPARATOR = ", ";
+    private static final String WINNERS_ARE = "최종 우승자 : ";
 
     public void printResult(Cars cars) {
         System.out.println(getScore(cars));
@@ -32,5 +35,10 @@ public class OutputView {
                 .forEach(currentPosition -> score.append(SCORE_UNIT));
 
         return score.toString();
+    }
+
+    private void printWinners(List<String> winners) {
+        System.out.print(WINNERS_ARE);
+        System.out.println(String.join(WINNER_SEPARATOR, winners));
     }
 }
