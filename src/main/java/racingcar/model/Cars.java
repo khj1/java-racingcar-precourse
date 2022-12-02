@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import racingcar.Car;
+import racingcar.RacingNumberGenerator;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final String DUPLICATED_CAR_NAMES = "자동차들의 이름은 서로 중복될 수 없습니다.";
+    private static final int MIN_POSITION = 0;
 
     private final List<Car> cars;
 
@@ -38,5 +40,25 @@ public class Cars {
 
     public static Cars from(List<String> names) {
         return new Cars(names);
+    }
+
+    public void race(RacingNumberGenerator numberGenerator) {
+        cars.forEach(car -> car.move(numberGenerator.generate()));
+    }
+
+    public List<CarName> findWinners() {
+        Position maxPosition = Position.from(getMaxPosition());
+
+        return cars.stream()
+                .filter(car -> car.isAt(maxPosition))
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(Cars.MIN_POSITION);
     }
 }
