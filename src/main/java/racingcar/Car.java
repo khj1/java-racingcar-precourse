@@ -30,4 +30,12 @@ public class Car {
     public boolean isAt(Position expectedPosition) {
         return position.equals(expectedPosition);
     }
+
+    public int getPosition() {
+        return position.getPosition();
+    }
+
+    public CarName getName() {
+        return name;
+    }
 }

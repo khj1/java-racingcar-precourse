@@ -3,6 +3,7 @@ package racingcar.model;
 import racingcar.Car;
 import racingcar.RacingNumberGenerator;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,5 +61,9 @@ public class Cars {
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElse(Cars.MIN_POSITION);
+    }
+
+    public List<Car> get() {
+        return Collections.unmodifiableList(cars);
     }
 }
