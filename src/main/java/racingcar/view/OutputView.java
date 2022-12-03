@@ -6,7 +6,7 @@ import racingcar.model.Cars;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class OutputView {
 
@@ -33,11 +33,9 @@ public class OutputView {
     }
 
     private String convertToScore(int position) {
-        StringBuilder score = new StringBuilder();
-        IntStream.rangeClosed(1, position)
-                .forEach(currentPosition -> score.append(SCORE_UNIT));
-
-        return score.toString();
+        return Stream.of(SCORE_UNIT)
+                .limit(position)
+                .collect(Collectors.joining());
     }
 
     public void printWinners(List<CarName> winners) {
