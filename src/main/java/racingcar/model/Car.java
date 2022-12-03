@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private static final int MOVABLE_LOWER_BOUND = 4;
 
     private final CarName name;
@@ -34,5 +34,14 @@ public class Car {
 
     public CarName getName() {
         return name;
+    }
+
+    public boolean isSamePosition(Car other) {
+        return this.position.equals(other.position);
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.position.compareTo(other.position);
     }
 }

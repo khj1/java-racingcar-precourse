@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final String DUPLICATED_CAR_NAMES = "자동차들의 이름은 서로 중복될 수 없습니다.";
-    private static final int MIN_POSITION = 0;
 
     private final List<Car> cars;
 
@@ -47,19 +46,17 @@ public class Cars {
     }
 
     public List<CarName> findWinners() {
-        Position maxPosition = Position.from(getMaxPosition());
-
+        Car maxPositionCar = getCarWithMaxPosition();
         return cars.stream()
-                .filter(car -> car.isAt(maxPosition))
+                .filter(maxPositionCar::isSamePosition)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
+    private Car getCarWithMaxPosition() {
         return cars.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElse(Cars.MIN_POSITION);
+                .max(Car::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("차량 리스트가 비어있습니다."));
     }
 
     public List<Car> get() {
